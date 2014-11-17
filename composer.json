@@ -1,0 +1,16 @@
+{
+    "name": "diasbruno/stc",
+    "description": "static pages.",
+    "version": "0.1.0",
+    "minimum-stability": "master",
+    "authors": [
+        {
+            "name": "Bruno Dias",
+            "email": "dias.h.bruno@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "require": {}
+}
