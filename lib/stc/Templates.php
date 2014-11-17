@@ -13,7 +13,6 @@ class Templates
 
   public function load($data_folder = '')
   {
-    // get all templates file names
     $files = array_diff(
       scandir($data_folder . '/templates'),
       array('..', '.')
@@ -21,10 +20,8 @@ class Templates
 
     $pattern = '/^(\w+).phtml$/';
 
-    // remove extention and make it the key
     foreach($files as $file) {
       if (preg_match($pattern, $file, $match)) {
-        // set the template to the key.
         $this->templates[$match[1]] = $data_folder . '/' . $file;
       }
     }
