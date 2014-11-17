@@ -21,6 +21,12 @@ $test_case->test('default config.', function($t)
   $t->assertTrue(Config::bootstrap(dirname(__FILE__), 'data'));
 });
 
+$test_case->test('load site config.', function($t)
+{
+  $t->assert(Config::site()->name() == 'simple web project');
+  $t->assert(Config::site()->public_folder() == 'web');
+});
+
 $test_case->test('load data.', function($t)
 {
   // after we run the bootstrap, 

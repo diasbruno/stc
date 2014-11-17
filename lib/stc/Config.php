@@ -7,6 +7,7 @@ class Config
   static private $is_init     = false;
   static private $root_folder = '';
   static private $data_folder = '';
+  static private $site        = null;
   static private $files       = [];
 
   static public function bootstrap($root = '', $data_folder = '')
@@ -24,6 +25,10 @@ class Config
     } else {
       throw new \Exception('Data folder must be setted.');
     }
+
+    // load the config file.
+    self::$site = new Site();
+    self::$site->load(self::$data_folder);
 
     // loading data files.
     $files = array_diff(
@@ -45,6 +50,11 @@ class Config
     foreach($files as $file) {
       self::$files[] = $data_loader->load(self::$data_folder, $file);
     }
+  }
+
+  static public function site()
+  {
+    return self::$site;
   }
 
   static public function files()
