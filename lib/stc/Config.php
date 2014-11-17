@@ -8,7 +8,8 @@ class Config
   static private $root_folder = '';
   static private $data_folder = '';
   static private $site        = null;
-  static private $files       = [];
+  static private $templates   = null;
+  static private $files       = null;
 
   static public function bootstrap($root = '', $data_folder = '')
   {
@@ -30,12 +31,13 @@ class Config
     self::$site = new Site();
     self::$site->load(self::$data_folder);
 
+    // load the templates.
+    self::$templates = new Templates();
+    self::$templates->load(self::$data_folder);
+
     // loading data files.
-    $files = array_diff(
-      scandir(self::$data_folder),
-      array('..', '.')
-    );
-    self::load_data_files($files);
+    self::$files = new Files();
+    self::$files->load(self::$data_folder);
 
     // boot app.
     self::$is_init = true;
@@ -43,18 +45,14 @@ class Config
     return self::$is_init;
   }
 
-  static private function load_data_files($files = [])
-  {
-    $data_loader = new DataLoader();
-
-    foreach($files as $file) {
-      self::$files[] = $data_loader->load(self::$data_folder, $file);
-    }
-  }
-
   static public function site()
   {
     return self::$site;
+  }
+
+  static public function templates()
+  {
+    return self::$templates;
   }
 
   static public function files()

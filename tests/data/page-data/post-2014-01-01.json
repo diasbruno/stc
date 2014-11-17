@@ -1,6 +1,7 @@
 {
   "type": "post",
+  "template": "default",
   "title": "Test post",
   "categories": ["cat-a","cat-b"],
-  "content": "posts/test-post.md"
+  "content": "pages/page-01.phtml"
 }
