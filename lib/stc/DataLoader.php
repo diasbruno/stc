@@ -19,6 +19,6 @@ class DataLoader
   {
     $the_file = $path . '/' . $file;
 
-    return json_decode($this->read_file($the_file));
+    return json_decode($this->read_file($the_file), true);
   }
 }

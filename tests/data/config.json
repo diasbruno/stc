@@ -1,4 +1,5 @@
 {
   "name": "simple web project",
-  "public_folder": "web"
+  "public_folder": "web",
+  "my_data": "stuff"
 }

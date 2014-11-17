@@ -25,6 +25,7 @@ $test_case->test('load site config.', function($t)
 {
   $t->assert(Config::site()->name() == 'simple web project');
   $t->assert(Config::site()->public_folder() == 'web');
+  $t->assert(Config::site()->get("my_data") == 'stuff');
 });
 
 $test_case->test('load data.', function($t)
