@@ -4,6 +4,7 @@ namespace STC;
 
 class Templates
 {
+  private $templates_path;
   private $templates;
 
   public function __construct()
@@ -11,10 +12,17 @@ class Templates
     $this->templates = [];
   }
 
+  public function templates_path()
+  {
+    return $this->templates_path;
+  }
+
   public function load($data_folder = '')
   {
+    $this->templates_path = $data_folder . '/templates';
+
     $files = array_diff(
-      scandir($data_folder . '/templates'),
+      scandir($this->templates_path),
       array('..', '.')
     );
 
