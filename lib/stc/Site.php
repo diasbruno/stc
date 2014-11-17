@@ -6,7 +6,7 @@ class Site
 {
   private $config;
   
-  public function Site() {}
+  public function __construct() {}
 
   public function load($data_folder = '')
   {

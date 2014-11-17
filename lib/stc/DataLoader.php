@@ -4,7 +4,7 @@ namespace STC;
 
 class DataLoader
 {
-  public function DataLoader() {}
+  public function __construct() {}
 
   private function read_file($file)
   {

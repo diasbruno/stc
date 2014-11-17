@@ -6,7 +6,7 @@ class Templates
 {
   private $templates;
 
-  public function Templates()
+  public function __construct()
   {
     $this->templates = [];
   }

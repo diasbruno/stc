@@ -6,7 +6,7 @@ class Files
 {
   private $files;
 
-  public function Files()
+  public function __construct()
   {
     $this->files = [];
   }
