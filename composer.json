@@ -2,7 +2,7 @@
     "name": "diasbruno/stc",
     "description": "static pages.",
     "version": "0.1.0",
-    "minimum-stability": "master",
+    "license": "PublicDomain",
     "authors": [
         {
             "name": "Bruno Dias",
@@ -10,6 +10,11 @@
         }
     ],
     "autoload": {
-        "classmap": ["src/"]
+        "psr-4": {
+             "STC\\": "lib/stc"
+	}
+    },
+    "require-dev": {
+        "bafs/testify": "dev-master"
     }
 }
