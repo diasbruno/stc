@@ -2,7 +2,7 @@
 
 namespace STC;
 
-class Writer
+class DataWriter
 {
   public function __construct() {}
 
