@@ -7,7 +7,7 @@ class DataLoader
   public function __construct() {}
 
   /**
-   * Creates and reads the files.
+   * Creates the handler and reads the files.
    * @param $file string | The filename.
    * @return string
    */

@@ -6,6 +6,11 @@ class DataWriter
 {
   public function __construct() {}
 
+  /**
+   * Creates the handler and writes the files.
+   * @param $file string | The filename.
+   * @return string
+   */
   private function write_to($file, $data)
   {
     $handler = fopen($file, "w");
@@ -13,12 +18,18 @@ class DataWriter
     fclose($handler);
   }
 
-  public function write($path = '', $filename = '', $file = [])
+  /**
+   * Write the file.
+   * @param $path string | The path where the file is located.
+   * @param $file string | The filename.
+   * @param $content string | The file content.
+   * @return string
+   */
+  public function write($path = '', $file = '', $content = '')
   {
     $the_path = Config::site()->public_folder() . '/' . $path;
 
-    if (@mkdir($the_path, 0755, true)) {
-    }
-    $this->write_to($the_path . '/'. $filename, $file['html']);
+    @mkdir($the_path, 0755, true);
+    $this->write_to($the_path . '/'. $file, $content);
   }
 }
