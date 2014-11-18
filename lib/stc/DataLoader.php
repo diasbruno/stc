@@ -6,6 +6,11 @@ class DataLoader
 {
   public function __construct() {}
 
+  /**
+   * Creates and reads the files.
+   * @param $file string | The filename.
+   * @return string
+   */
   private function read_file($file)
   {
     $handler = fopen($file, "r");
@@ -15,6 +20,12 @@ class DataLoader
     return $file_content;
   }
 
+  /**
+   * Load the file.
+   * @param $path string | The path where the file is located.
+   * @param $file string | The filename.
+   * @return string
+   */
   public function load($path, $file)
   {
     $the_file = $path . '/' . $file;
