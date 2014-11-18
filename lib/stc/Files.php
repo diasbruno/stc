@@ -14,12 +14,14 @@ class Files
     $this->files = [];
   }
 
+  private function read_dir($folder = '')
+  {
+    return array_diff(scandir($folder), array('..', '.'));
+  }
+
   public function load($data_folder = '')
   {
-    $files = array_diff(
-      scandir($data_folder . $this->data_path),
-      array('..', '.')
-    );
+    $files = $this->read_dir($data_folder . $this->data_path);
 
     $pattern = '/(.+).json$/';
 
