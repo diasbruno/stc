@@ -2,7 +2,7 @@
     "name": "diasbruno/stc",
     "description": "static pages.",
     "version": "0.1.0",
-    "license": "PublicDomain",
+    "license": "MIT",
     "authors": [
         {
             "name": "Bruno Dias",
@@ -12,7 +12,7 @@
     "autoload": {
         "psr-4": {
              "STC\\": "lib/stc"
-	}
+        }
     },
     "require-dev": {
         "bafs/testify": "dev-master"
