@@ -5,11 +5,17 @@ namespace STC;
 class Config
 {
   static private $is_init     = false;
+
   static private $root_folder = '';
   static private $data_folder = '';
+
   static private $site        = null;
   static private $templates   = null;
   static private $files       = null;
+
+  static private $components  = [];
+  static private $storage     = [];
+
   static private $renders     = [];
 
   static public function bootstrap($root = '', $data_folder = '')
@@ -55,8 +61,33 @@ class Config
     }
   }
 
+  static public function register_component($name)
+  {
+    if (class_exists($name)) {
+      self::$components[] = new $name();
+    } else {
+      print_r('[Warn] '.$name.' class does not exists.');
+    }
+  }
+
+  static public function store_data($key, $value)
+  {
+    self::$storage[$key] = $value;
+  }
+
+  static public function retrive_data($key)
+  {
+    if (array_key_exists($key, self::$storage)) {
+      return self::$storage[$key];
+    }
+    return [];
+  }
+
   static public function run()
   {
+    foreach (self::$components as $component) {
+      $component->build(self::files());
+    }
     foreach (self::$renders as $render) {
       $render->render(self::files());
     }
