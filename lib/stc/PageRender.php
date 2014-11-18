@@ -32,10 +32,10 @@ class PageRender
 
     if (array_key_exists('is_index', $file)) {
       $tmpl['slug'] = '';
-      printLn('===> Post link: /');
+      printLn('===> Page link: /');
     } else {
       $tmpl['slug'] = $slugify->slugify($file['title']);
-      printLn('===> Post link: ' . $tmpl['slug']);
+      printLn('===> Page link: ' . $tmpl['slug']);
     }
     $tmpl['html'] = $template->fetch($t);
 
@@ -46,7 +46,7 @@ class PageRender
 
   public function render($files)
   {
-    printLn('=> Start PostRender.');
+    printLn('=> Start PageRender.');
     printLn('');
     $post_files = $files->filter_by(array(&$this, 'filter_by_type'));
 
@@ -59,6 +59,6 @@ class PageRender
       $tmpl = $this->make_data($template, $file);
       $writer->write($tmpl['slug'], 'index.html', $tmpl);
     }
-    printLn('=> End PostRender.');
+    printLn('=> End PageRender.');
   }
 }

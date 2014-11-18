@@ -47,6 +47,7 @@ class Config
     self::$files->load(self::$data_folder);
 
     // boot app.
+    self::register_component(new PageComponent);
     self::register_render(new PageRender);
     self::$is_init = true;
 
