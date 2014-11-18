@@ -52,22 +52,14 @@ class Config
     return self::$is_init;
   }
 
-  static public function register_render($name)
+  static public function register_render($instance)
   {
-    if (class_exists($name)) {
-      self::$renders[] = new $name();
-    } else {
-      print_r('[Warn] '.$name.' class does not exists.');
-    }
+    self::$renders[] = $instance;
   }
 
-  static public function register_component($name)
+  static public function register_component($instance)
   {
-    if (class_exists($name)) {
-      self::$components[] = new $name();
-    } else {
-      print_r('[Warn] '.$name.' class does not exists.');
-    }
+    self::$components[] = $instance;
   }
 
   static public function store_data($key, $value)
