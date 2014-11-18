@@ -6,15 +6,18 @@ class Files
 {
   private $files;
 
+  private $data_path;
+
   public function __construct()
   {
+    $this->data_path = '/' . Config::site()->get('pages_data');
     $this->files = [];
   }
 
   public function load($data_folder = '')
   {
     $files = array_diff(
-      scandir($data_folder . '/page-data'),
+      scandir($data_folder . $this->data_path),
       array('..', '.')
     );
 
@@ -25,11 +28,16 @@ class Files
     foreach($files as $file) {
       if (preg_match($pattern, $file, $match)) {
         $this->files[] = $data_loader->load(
-          $data_folder . '/page-data',
+          $data_folder . $this->data_path,
           $file
         );
       }
     }
+  }
+
+  public function get_all()
+  {
+    return $this->files;
   }
 
   public function filter_by($fn)
