@@ -30,7 +30,7 @@ class Templates
 
     foreach($files as $file) {
       if (preg_match($pattern, $file, $match)) {
-        $this->templates[$match[1]] = $data_folder . '/' . $file;
+        $this->templates[$match[1]] = $file;
       }
     }
   }
