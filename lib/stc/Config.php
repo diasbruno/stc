@@ -56,11 +56,17 @@ class Config
 
   static public function register_render($instance)
   {
+    if ($instance == null) {
+      throw new \Exception('Instance is null.');
+    }
     self::$renders[] = $instance;
   }
 
   static public function register_component($instance)
   {
+    if ($instance == null) {
+      throw new \Exception('Instance is null.');
+    }
     self::$components[] = $instance;
   }
 
@@ -88,23 +94,11 @@ class Config
     }
   }
 
-  static public function data_folder()
-  {
-    return self::$data_folder;
-  }
+  static public function data_folder() { return self::$data_folder; }
 
-  static public function site()
-  {
-    return self::$site;
-  }
+  static public function site() { return self::$site; }
 
-  static public function templates()
-  {
-    return self::$templates;
-  }
+  static public function templates() { return self::$templates; }
 
-  static public function files()
-  {
-    return self::$files;
-  }
+  static public function files() { return self::$files; }
 }
