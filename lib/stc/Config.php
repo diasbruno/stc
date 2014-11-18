@@ -10,6 +10,7 @@ class Config
   static private $site        = null;
   static private $templates   = null;
   static private $files       = null;
+  static private $renders     = [];
 
   static public function bootstrap($root = '', $data_folder = '')
   {
@@ -43,6 +44,27 @@ class Config
     self::$is_init = true;
 
     return self::$is_init;
+  }
+
+  static public function register_render($name)
+  {
+    if (class_exists($name)) {
+      self::$renders[] = new $name();
+    } else {
+      print_r('[Warn] '.$name.' class does not exists.');
+    }
+  }
+
+  static public function run()
+  {
+    foreach (self::$renders as $render) {
+      $render->render(self::files());
+    }
+  }
+
+  static public function data_folder()
+  {
+    return self::$data_folder;
   }
 
   static public function site()

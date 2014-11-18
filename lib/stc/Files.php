@@ -32,6 +32,11 @@ class Files
     }
   }
 
+  public function filter_by($fn)
+  {
+    return array_filter($this->files, $fn);
+  }
+
   public function count()
   {
     return count($this->files);
