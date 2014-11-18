@@ -29,10 +29,12 @@ class Files
 
     foreach($files as $file) {
       if (preg_match($pattern, $file, $match)) {
-        $this->files[] = $data_loader->load(
+        $f = $data_loader->load(
           $data_folder . $this->data_path,
           $file
         );
+        $f['file'] = $file;
+        $this->files[] = $f;
       }
     }
   }
