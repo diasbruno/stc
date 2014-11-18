@@ -2,16 +2,14 @@
 
 namespace STC;
 
-class Site
+class Site extends Data
 {
-  private $config;
-  
   public function __construct() {}
 
   public function load($data_folder = '')
   {
     $data_loader = new DataLoader();
-    $this->config = $data_loader->load(
+    $this->data = $data_loader->load(
       $data_folder,
       '/config.json'
     );
@@ -19,16 +17,11 @@ class Site
 
   public function name()
   {
-    return $this->config['name'];
+    return $this->data['name'];
   }
 
   public function public_folder()
   {
-    return $this->config['public_folder'];
-  }
-
-  public function get($key)
-  {
-    return $this->config[$key];
+    return $this->data['public_folder'];
   }
 }
