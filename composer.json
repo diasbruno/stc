@@ -15,6 +15,9 @@
       "STC\\": "lib/stc"
     }
   },
+  "require": {
+    "diasbruno/stc-utils": "dev-master"
+  },
   "require-dev": {
     "bafs/testify": "dev-master"
   }
