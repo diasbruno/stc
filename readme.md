@@ -27,7 +27,7 @@ Create your composer file and added the STC core engine.
 ```
 
 In the same path as your composer.json file, creates your project file (project.php).
-This should be enouth to have a start project.
+This should be enough to have a start project.
 
 ```
 <?php
