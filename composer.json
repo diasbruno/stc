@@ -16,7 +16,7 @@
     }
   },
   "require": {
-    "cocur/slugify": "@stable",
+    "cocur/slugify": "@stable"
   },
   "require-dev": {
     "bafs/testify": "dev-master"
