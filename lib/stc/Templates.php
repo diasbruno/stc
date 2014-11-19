@@ -7,24 +7,37 @@ class Templates
   private $templates_path;
   private $templates;
 
-  public function __construct()
+  /**
+   * @constructor
+   */
+  public function __construct() { $this->templates = []; }
+
+  /**
+   * Returns the templates path.
+   * @return string
+   */
+  public function templates_path() { return $this->templates_path; }
+
+  /**
+   * Read a directory.
+   * @param $folder string | The folder name.
+   * @return array
+   */
+  private function read_dir($folder = '')
   {
-    $this->templates = [];
+    return array_diff(scandir($folder), array('..', '.'));
   }
 
-  public function templates_path()
-  {
-    return $this->templates_path;
-  }
-
+  /**
+   * Load files from a given directory.
+   * @param $data_folder string | The folder name.
+   * @return array
+   */
   public function load($data_folder = '')
   {
     $this->templates_path = $data_folder . '/templates';
 
-    $files = array_diff(
-      scandir($this->templates_path),
-      array('..', '.')
-    );
+    $files = $this->read_dir($this->templates_path);
 
     $pattern = '/^(\w+).phtml$/';
 
@@ -35,13 +48,16 @@ class Templates
     }
   }
 
-  public function template($key)
-  {
-    return $this->templates[$key];
-  }
+  /**
+   * Get the template by a key.
+   * @param $key string | The key name.
+   * @return string
+   */
+  public function template($key) { return $this->templates[$key]; }
 
-  public function count()
-  {
-    return count($this->templates);
-  }
+  /**
+   * Get the number of loaded files.
+   * @return int
+   */
+  public function count() { return count($this->templates); }
 }

@@ -8,6 +8,9 @@ class Files
 
   private $data_path;
 
+  /**
+   * @constructor
+   */
   public function __construct()
   {
     $this->data_path = '/' . Config::site()->get('pages_data');

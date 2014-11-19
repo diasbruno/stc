@@ -6,6 +6,9 @@ class Data
 {
   protected $data;
 
+  /**
+   * @constructor
+   */
   public function __construct() {}
 
   /**

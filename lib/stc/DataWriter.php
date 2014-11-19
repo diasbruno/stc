@@ -4,6 +4,9 @@ namespace STC;
 
 class DataWriter
 {
+  /**
+   * @constructor
+   */
   public function __construct() {}
 
   /**

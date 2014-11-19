@@ -4,6 +4,9 @@ namespace STC;
 
 class DataLoader
 {
+  /**
+   * @constructor
+   */
   public function __construct() {}
 
   /**

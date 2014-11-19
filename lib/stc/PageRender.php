@@ -7,13 +7,28 @@ use Cocur\Slugify\Slugify;
 class PageRender
 {
   const TYPE = 'page';
+
+  /**
+   * @constructor
+   */
   public function __construct() {}
 
+  /**
+   * Filter a file by it type - page.
+   * @param $file array | Json file as array.
+   * @return bool
+   */
   public function filter_by_type($file)
   {
     return $file['type'] == PageRender::TYPE;
   }
 
+  /**
+   * Format a file to be rendered.
+   * @param $template Template | A Template.
+   * @param $file array | Json file as array.
+   * @return array
+   */
   private function make_data($template, $file)
   {
     if (!array_key_exists('template', $file)) {
@@ -44,6 +59,11 @@ class PageRender
     return $tmpl;
   }
 
+  /**
+   * Render function.
+   * @param $files array | A list of all available entries.
+   * @return void
+   */
   public function render($files)
   {
     printLn('=> Start PageRender.');
