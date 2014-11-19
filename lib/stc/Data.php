@@ -9,7 +9,10 @@ class Data
   /**
    * @constructor
    */
-  public function __construct() {}
+  public function __construct()
+  {
+    $this->data = [];
+  }
 
   /**
    * Use this method to ensure that the key must be present.
