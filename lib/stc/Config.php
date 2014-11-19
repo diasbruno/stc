@@ -22,25 +22,10 @@ class Config
   static private $data_folder = '';
 
   /**
-   * Instance that holds the main configuration.
+   * Instance of the application.
    * @var Site
    */
-  static private $site = null;
-  /**
-   * Instance that holds where the templates are stored.
-   * @var Templates
-   */
-  static private $templates = null;
-  /**
-   * Instance that holds where the posts and pages are stored.
-   * @var Files
-   */
-  static private $files = null;
-  /**
-   * Store all data that was created by the components.
-   * @var object
-   */
-  static private $db = [];
+  static private $app = null;
 
   /**
    * Store all component's instances.
@@ -77,19 +62,7 @@ class Config
     }
 
     // load the config file.
-    self::$site = new Site();
-    self::$site->load(self::$data_folder);
-
-    // load the templates.
-    self::$templates = new Templates();
-    self::$templates->load(self::$data_folder);
-
-    // loading data files.
-    self::$files = new Files();
-    self::$files->load(self::$data_folder);
-
-    // initialize database.
-    self::$db = new Database();
+    self::$app = new Application(self::$data_folder);
 
     // boot app.
     self::register_component(new PageComponent);
@@ -144,29 +117,44 @@ class Config
    * Returns the data folder.
    * @return string
    */
-  static public function data_folder() { return self::$data_folder; }
+  static public function data_folder()
+  {
+    return self::$data_folder;
+  }
 
   /**
    * Returns the site instance.
    * @return Site
    */
-  static public function site() { return self::$site; }
+  static public function site()
+  {
+    return self::$app->site;
+  }
 
   /**
    * Returns the templates instance.
    * @return Templates
    */
-  static public function templates() { return self::$templates; }
+  static public function templates()
+  {
+    return self::$app->templates;
+  }
 
   /**
    * Returns the files instance.
    * @return Files
    */
-  static public function files() { return self::$files; }
+  static public function files()
+  {
+    return self::$app->files;
+  }
 
   /**
    * Returns the database instance.
    * @return Files
    */
-  static public function db() { return self::$db; }
+  static public function db()
+  {
+    return self::$app->db;
+  }
 }
