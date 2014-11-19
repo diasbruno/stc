@@ -14,11 +14,21 @@ class Files
     $this->files = [];
   }
 
+  /**
+   * Read a directory.
+   * @param $folder string | The folder name.
+   * @return array
+   */
   private function read_dir($folder = '')
   {
     return array_diff(scandir($folder), array('..', '.'));
   }
 
+  /**
+   * Load files from a given directory.
+   * @param $data_folder string | The folder name.
+   * @return array
+   */
   public function load($data_folder = '')
   {
     $files = $this->read_dir($data_folder . $this->data_path);
@@ -39,18 +49,22 @@ class Files
     }
   }
 
-  public function get_all()
-  {
-    return $this->files;
-  }
+  /**
+   * Get all loaded files.
+   * @return array
+   */
+  public function get_all() { return $this->files; }
 
-  public function filter_by($fn)
-  {
-    return array_filter($this->files, $fn);
-  }
+  /**
+   * Execute a predicate and get back a list of files.
+   * @param $fn Function | A function for the filter.
+   * @return array
+   */
+  public function filter_by($fn) { return array_filter($this->files, $fn); }
 
-  public function count()
-  {
-    return count($this->files);
-  }
+  /**
+   * Get the number of loaded files.
+   * @return int
+   */
+  public function count() { return count($this->files); }
 }
