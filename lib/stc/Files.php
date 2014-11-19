@@ -13,7 +13,7 @@ class Files
    */
   public function __construct()
   {
-    $this->data_path = '/' . Config::site()->get('pages_data');
+    $this->data_path = '';
     $this->files = [];
   }
 
@@ -32,8 +32,9 @@ class Files
    * @param $data_folder string | The folder name.
    * @return array
    */
-  public function load($data_folder = '')
+  public function load($data_folder = '', $pages_data = '')
   {
+    $this->data_path = '/' . $pages_data;
     $files = $this->read_dir($data_folder . $this->data_path);
 
     $pattern = '/(.+).json$/';

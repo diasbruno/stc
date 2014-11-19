@@ -40,7 +40,7 @@ class Application
 
     // loading data files.
     $this->files = new Files();
-    $this->files->load($data_folder);
+    $this->files->load($data_folder, $this->site->get('pages_data'));
 
     // initialize database.
     $this->db = new Database();
