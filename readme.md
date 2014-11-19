@@ -40,7 +40,7 @@ require $current_dir . '/vendor/autoload.php';
 use STC\Config;
 
 // sets the directory where the data is stored.
-// 'data' is a path in the root of the project.
+// 'data' is a directory in the root of the project.
 if (Config::bootstrap($current_dir, 'data')) {
   // register components and renders.
   // they work this way, because, maybe, you want to extend
