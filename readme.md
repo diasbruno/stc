@@ -4,11 +4,11 @@ A static page generator.
 
 The main objective of stc is to make a simple and extensible static page generator.
 
-## Dependencies
+### Dependencies
 
 You will need [composer](http://getcomponser.org). That's it.
 
-## Getting started
+### Getting started
 
 Create your composer file and added the STC core engine.
 
@@ -55,6 +55,6 @@ if (Config::bootstrap($current_dir, 'data')) {
 }
 ```
 
-## LICENSE
+### LICENSE
 
 Released under [the MIT license](LICENSE).
