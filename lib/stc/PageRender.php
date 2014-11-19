@@ -51,7 +51,7 @@ class PageRender
    * @param $file array | Json file as array.
    * @return array
    */
-  private function make_data($template, $file)
+  private function make_data($file)
   {
     if (!array_key_exists('template', $file)) {
       throw new Exception('x> Current page: ' . $file['title'] . ' does not have a template.');
@@ -59,15 +59,14 @@ class PageRender
     printLn('==> Current page: ' . $file['title'] . '.');
 
     $t = Config::templates()->template($file['template']);
-    $c = new \Template(Config::data_folder() . '/');
-
-    $template->set('content', $c->fetch($file['content']));
-    $template->set('post', $file);
 
     $tmpl = $file;
     $this->make_slug($file, $tmpl);
 
-    $tmpl['html'] = $template->fetch($t);
+    $tmpl['html'] = view(Config::data_folder() . '/templates/' . $t, [
+      'content' => view(Config::data_folder() . '/' . $file['content']),
+      'post'=> $file,
+    ]);
 
     printLn('');
 
@@ -86,12 +85,11 @@ class PageRender
     $post_files = $files->filter_by(array(&$this, 'filter_by_type'));
 
     $t = Config::templates()->templates_path() . '/';
-    $template = new \Template($t);
 
     $writer = new DataWriter();
 
     foreach($post_files as $file) {
-      $tmpl = $this->make_data($template, $file);
+      $tmpl = $this->make_data($file);
       $writer->write($tmpl['slug'], 'index.html', $tmpl['html']);
     }
     printLn('=> End PageRender.');
