@@ -16,7 +16,7 @@
     }
   },
   "require": {
-    "diasbruno/stc-utils": "dev-master"
+    "diasbruno/stc-utils": "*"
   },
   "require-dev": {
     "bafs/testify": "dev-master"
