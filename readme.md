@@ -10,7 +10,7 @@ You will need [composer](http://getcomponser.org). That's it.
 
 ## Getting started
 
-Create your composer file and added the stc core engine.
+Create your composer file and added the STC core engine.
 
 ```
 {
