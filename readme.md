@@ -10,6 +10,19 @@ You will need [composer](http://getcomponser.org). That's it.
 
 ## Getting started
 
+```
+{
+  ...
+  "autoload": {
+    "classmap": [...] // load your components...
+  },
+  "require": {
+    // core engine.
+    "diasbruno/stc-utils": "dev-master",
+    "diasbruno/stc": "dev-master"
+  }
+}
+```
 
 ## LICENSE
 
