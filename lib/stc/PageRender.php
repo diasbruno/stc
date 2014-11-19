@@ -8,10 +8,15 @@ class PageRender
 {
   const TYPE = 'page';
 
+  private $slugify;
+
   /**
    * @constructor
    */
-  public function __construct() {}
+  public function __construct()
+  {
+    $this->slugify = new Slugify();
+  }
 
   /**
    * Filter a file by it type - page.
@@ -21,6 +26,23 @@ class PageRender
   public function filter_by_type($file)
   {
     return $file['type'] == PageRender::TYPE;
+  }
+
+  /**
+   * Make the page slug.
+   * @param $file array | Raw file data.
+   * @param $tmpl array | Reference to the new file data.
+   * @return void
+   */
+  private function make_slug($file, &$tmpl)
+  {
+    if (array_key_exists('is_index', $file)) {
+      $tmpl['slug'] = '';
+      printLn('===> Page link: /');
+    } else {
+      $tmpl['slug'] = $this->slugify->slugify($file['title']);
+      printLn('===> Page link: ' . $tmpl['slug']);
+    }
   }
 
   /**
@@ -43,15 +65,8 @@ class PageRender
     $template->set('post', $file);
 
     $tmpl = $file;
-    $slugify = new Slugify();
+    $this->make_slug($file, $tmpl);
 
-    if (array_key_exists('is_index', $file)) {
-      $tmpl['slug'] = '';
-      printLn('===> Page link: /');
-    } else {
-      $tmpl['slug'] = $slugify->slugify($file['title']);
-      printLn('===> Page link: ' . $tmpl['slug']);
-    }
     $tmpl['html'] = $template->fetch($t);
 
     printLn('');
