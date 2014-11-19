@@ -36,17 +36,17 @@ class Config
    * @var Files
    */
   static private $files = null;
+  /**
+   * Store all data that was created by the components.
+   * @var object
+   */
+  static private $db = [];
 
   /**
    * Store all component's instances.
    * @var object
    */
   static private $components = [];
-  /**
-   * Store all data that was created by the components.
-   * @var object
-   */
-  static private $storage = [];
 
   /**
    * Store all render's instances.
@@ -88,6 +88,9 @@ class Config
     self::$files = new Files();
     self::$files->load(self::$data_folder);
 
+    // initialize database.
+    self::$db = new Database();
+
     // boot app.
     self::register_component(new PageComponent);
     self::register_render(new PageRender);
@@ -121,30 +124,6 @@ class Config
   }
 
   /**
-   * Saves some data by key value.
-   * @param $key string | The key name.
-   * @param $value any | The value.
-   */
-  static public function store_data($key, $value)
-  {
-    self::$storage[$key] = $value;
-  }
-
-  /**
-   * Retrives data by key.
-   * @param $key string | The key name.
-   * @return any
-   */
-  static public function retrive_data($key)
-  {
-    if (array_key_exists($key, self::$storage)) {
-      return self::$storage[$key];
-    }
-
-    return [];
-  }
-
-  /**
    * Run...
    * Execute the build method in each component, to generate data.
    * Execute the render method in each render to write pages.
@@ -155,6 +134,7 @@ class Config
     foreach (self::$components as $component) {
       $component->build(self::files());
     }
+
     foreach (self::$renders as $render) {
       $render->render(self::files());
     }
@@ -183,4 +163,10 @@ class Config
    * @return Files
    */
   static public function files() { return self::$files; }
+
+  /**
+   * Returns the database instance.
+   * @return Files
+   */
+  static public function db() { return self::$db; }
 }
