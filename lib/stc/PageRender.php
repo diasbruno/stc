@@ -6,8 +6,6 @@ use Cocur\Slugify\Slugify;
 
 class PageRender
 {
-  const TYPE = 'page';
-
   private $slugify;
 
   /**
@@ -16,16 +14,6 @@ class PageRender
   public function __construct()
   {
     $this->slugify = new Slugify();
-  }
-
-  /**
-   * Filter a file by it type - page.
-   * @param $file array | Json file as array.
-   * @return bool
-   */
-  public function filter_by_type($file)
-  {
-    return $file['type'] == PageRender::TYPE;
   }
 
   /**
