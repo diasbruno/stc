@@ -21,6 +21,6 @@ class PageComponent
       $pages[] = $file;
     }
 
-    Config::db()->store_data('page_list', $pages);
+    Config::db()->store('page_list', $pages);
   }
 }
