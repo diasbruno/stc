@@ -93,11 +93,11 @@ class Database
   }
 
   /**
-   * Retrives data by key.
+   * Retrieves data by key.
    * @param $key string | The key name.
    * @return any
    */
-  public function retrive($key)
+  public function retrieve($key)
   {
     if (array_key_exists($key, $this->db)) {
       return $this->db[$key]['content'];

@@ -24,11 +24,11 @@ $test_case->test('trying to store data without a key.', function($t)
   }
 });
 
-$test_case->test('store and retrive data. it will be locked by default.', function($t)
+$test_case->test('store and retrieve data. it will be locked by default.', function($t)
 {
   $data = [ 'dummy' => 'dummy' ];
   Config::db()->store('some-data', $data);
-  $t->assert(Config::db()->retrive('some-data') == $data);
+  $t->assert(Config::db()->retrieve('some-data') == $data);
 });
 
 $test_case->test('trying to store data with existing key that is locked.', function($t)
@@ -37,7 +37,7 @@ $test_case->test('trying to store data with existing key that is locked.', funct
   try {
     Config::db()->store('some-data', []);
   } catch(\Exception $e) {
-    $t->assert(Config::db()->retrive('some-data') == $data);
+    $t->assert(Config::db()->retrieve('some-data') == $data);
   }
 });
 
@@ -46,7 +46,7 @@ $test_case->test('store unlocked data.', function($t)
   $data = [ 'dummy' => 'dummy' ];
   Config::db()->store('some-data-2', [], false);
   Config::db()->store('some-data-2', $data);
-  $t->assert(Config::db()->retrive('some-data-2') == $data);
+  $t->assert(Config::db()->retrieve('some-data-2') == $data);
 });
 
 $test_case();
