@@ -19,12 +19,22 @@ class PageComponent
   }
 
   /**
+   * Filter a file by it type - page.
+   * @param $file array | Json file as array.
+   * @return bool
+   */
+  public function filter_by_type($file)
+  {
+    return $file['type'] == $this->type;
+  }
+
+  /**
    * Build.
    */
   public function build($files)
   {
     $pages = [];
-    $files = $files->get_all();
+    $files = $files->filter_by(array(&$this, 'filter_by_type'));
 
     foreach($files as $file) {
       if ($file['type'] != $this->type) continue;

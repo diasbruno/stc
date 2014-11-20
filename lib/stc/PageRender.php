@@ -63,14 +63,14 @@ class PageRender
   public function render($files)
   {
     printLn('=> PageRender.');
-    $post_files = $files->filter_by(array(&$this, 'filter_by_type'));
+    $pages = Config::db()->retrieve('page_list');
 
     $t = Config::templates()->templates_path() . '/';
 
     $writer = new DataWriter();
 
-    foreach($post_files as $file) {
-      $tmpl = $this->make_data($file);
+    foreach($pages as $page) {
+      $tmpl = $this->make_data($page);
       $writer->write($tmpl['slug'], 'index.html', $tmpl['html']);
     }
   }
