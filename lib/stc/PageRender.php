@@ -36,13 +36,8 @@ class PageRender
    */
   private function make_slug($file, &$tmpl)
   {
-    if (array_key_exists('is_index', $file)) {
-      $tmpl['slug'] = '';
-      printLn('===> Page link: /');
-    } else {
-      $tmpl['slug'] = $this->slugify->slugify($file['title']);
-      printLn('===> Page link: ' . $tmpl['slug']);
-    }
+    $tmpl['slug'] = array_key_exists('is_index', $file) ? 
+      '' : $this->slugify->slugify($file['title']);
   }
 
   /**
@@ -56,7 +51,6 @@ class PageRender
     if (!array_key_exists('template', $file)) {
       throw new Exception('x> Current page: ' . $file['title'] . ' does not have a template.');
     }
-    printLn('==> Current page: ' . $file['title'] . '.');
 
     $t = Config::templates()->template($file['template']);
 
@@ -68,7 +62,7 @@ class PageRender
       'post'=> $file,
     ]);
 
-    printLn('');
+    printLn('==> Current page: ' . $file['title'] . ': ' . $tmpl['slug']);
 
     return $tmpl;
   }
