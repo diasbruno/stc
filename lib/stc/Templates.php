@@ -2,6 +2,10 @@
 
 namespace STC;
 
+/**
+ * @author Bruno Dias <dias.h.bruno@gmail.com>
+ * @license MIT License (see LICENSE)
+ */
 class Templates
 {
   private $templates_path;
@@ -10,13 +14,19 @@ class Templates
   /**
    * @constructor
    */
-  public function __construct() { $this->templates = []; }
+  public function __construct()
+  {
+    $this->templates = [];
+  }
 
   /**
    * Returns the templates path.
    * @return string
    */
-  public function templates_path() { return $this->templates_path; }
+  public function templates_path()
+  {
+    return $this->templates_path;
+  }
 
   /**
    * Read a directory.
@@ -53,11 +63,17 @@ class Templates
    * @param $key string | The key name.
    * @return string
    */
-  public function template($key) { return $this->templates[$key]; }
+  public function template($key)
+  {
+    return $this->templates[$key];
+  }
 
   /**
    * Get the number of loaded files.
    * @return int
    */
-  public function count() { return count($this->templates); }
+  public function count()
+  {
+    return count($this->templates);
+  }
 }

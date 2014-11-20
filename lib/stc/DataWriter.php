@@ -2,6 +2,10 @@
 
 namespace STC;
 
+/**
+ * @author Bruno Dias <dias.h.bruno@gmail.com>
+ * @license MIT License (see LICENSE)
+ */
 class DataWriter
 {
   /**

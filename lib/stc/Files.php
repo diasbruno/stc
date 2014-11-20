@@ -2,6 +2,10 @@
 
 namespace STC;
 
+/**
+ * @author Bruno Dias <dias.h.bruno@gmail.com>
+ * @license MIT License (see LICENSE)
+ */
 class Files
 {
   private $files;
@@ -57,18 +61,27 @@ class Files
    * Get all loaded files.
    * @return array
    */
-  public function get_all() { return $this->files; }
+  public function get_all()
+  {
+    return $this->files;
+  }
 
   /**
    * Execute a predicate and get back a list of files.
    * @param $fn Function | A function for the filter.
    * @return array
    */
-  public function filter_by($fn) { return array_filter($this->files, $fn); }
+  public function filter_by($fn)
+  {
+    return array_filter($this->files, $fn);
+  }
 
   /**
    * Get the number of loaded files.
    * @return int
    */
-  public function count() { return count($this->files); }
+  public function count()
+  {
+    return count($this->files);
+  }
 }

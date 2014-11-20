@@ -2,11 +2,15 @@
 
 namespace STC;
 
+/**
+ * @author Bruno Dias <dias.h.bruno@gmail.com>
+ * @license MIT License (see LICENSE)
+ */
 class PageComponent
 {
   /**
    * The type.
-   * @ar string
+   * @var string
    */
   private $type;
 
@@ -30,6 +34,7 @@ class PageComponent
 
   /**
    * Build.
+   * @return void
    */
   public function build($files)
   {

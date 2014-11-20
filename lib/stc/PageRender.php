@@ -4,6 +4,10 @@ namespace STC;
 
 use Cocur\Slugify\Slugify;
 
+/**
+ * @author Bruno Dias <dias.h.bruno@gmail.com>
+ * @license MIT License (see LICENSE)
+ */
 class PageRender
 {
   private $slugify;
