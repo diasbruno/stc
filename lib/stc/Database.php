@@ -81,7 +81,7 @@ class Database
   public function store($key = '', $value = [], $lock = true)
   {
     if ($key == '') {
-      $this->fault('[Error] Cannot store data without a key. Key is ' . $key);
+      $this->fault('[Error] Cannot store data without a key. Key is "' . $key . '".');
     }
 
     if (!$this->has_key($key)) {
@@ -108,5 +108,14 @@ class Database
     }
 
     return [];
+  }
+
+  /**
+   * Dump the current database.
+   * @return void
+   */
+  public function dump()
+  {
+    var_dump($this->db);
   }
 }
