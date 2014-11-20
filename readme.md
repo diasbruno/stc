@@ -19,8 +19,6 @@ Create your composer file and added the STC core engine.
     "classmap": [...] // load your components...
   },
   "require": {
-    // core engine.
-    "diasbruno/stc-utils": "dev-master",
     "diasbruno/stc": "dev-master"
   }
 }
