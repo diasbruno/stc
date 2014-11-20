@@ -4,6 +4,10 @@ namespace STC;
 
 class Database
 {
+  /**
+   * Storage.
+   * @var array
+   */
   private $db;
 
   /**
