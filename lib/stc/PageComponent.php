@@ -4,13 +4,23 @@ namespace STC;
 
 class PageComponent
 {
+  /**
+   * The type.
+   * @ar string
+   */
   private $type;
 
+  /**
+   * @constructor
+   */
   public function __construct()
   {
     $this->type = 'page';
   }
 
+  /**
+   * Build.
+   */
   public function build($files)
   {
     $pages = [];
