@@ -46,6 +46,26 @@ class Database
   }
 
   /**
+   * Key already exists?
+   * @param $key string | The key name.
+   * @return bool
+   */
+  public function has_key($key)
+  {
+    return array_key_exists($key, $this->db);
+  }
+
+  /**
+   * Data for a key is locked?
+   * @param $key string | The key name.
+   * @return bool
+   */
+  private function is_locked($key)
+  {
+    return $this->db[$key]['locked'];
+  }
+
+  /**
    * Saves some data by key value.
    * @param $key string | The key name.
    * @param $value any | The value.
@@ -56,11 +76,11 @@ class Database
       $this->fault('[Error] Cannot store data without a key. Key is ' . $key);
     }
 
-    if (!array_key_exists($key, $this->db)) {
+    if (!$this->has_key($key)) {
       $this->create($key, $lock);
       $this->store_data($key, $value);
     } else {
-      if (!$this->db[$key]['locked']) {
+      if (!$this->is_locked($key)) {
         $this->store_data($key, $value);
       } else {
         $this->fault('[Error] Cannot store data with a registered key that is locked.');
