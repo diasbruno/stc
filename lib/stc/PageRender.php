@@ -80,8 +80,7 @@ class PageRender
    */
   public function render($files)
   {
-    printLn('=> Start PageRender.');
-    printLn('');
+    printLn('=> PageRender.');
     $post_files = $files->filter_by(array(&$this, 'filter_by_type'));
 
     $t = Config::templates()->templates_path() . '/';
@@ -92,6 +91,5 @@ class PageRender
       $tmpl = $this->make_data($file);
       $writer->write($tmpl['slug'], 'index.html', $tmpl['html']);
     }
-    printLn('=> End PageRender.');
   }
 }
