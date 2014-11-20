@@ -43,8 +43,11 @@ if (Config::bootstrap($current_dir, 'data')) {
   /* register components and renders.
    * they work this way, because, maybe, you want to extend
    * some of the plugins to your needs.
+   * NOTE: STC\PageComponent and new STC\PageRender must be loaded, or their extended classes.
    * NOTE: STC\PageComponent and new STC\PageRender are plugins (stc-posts)...
    */
+  Config::register_component(new STC\PageComponent);
+  Config::register_render(new STC\PageRender);
   Config::register_component(new STC\PostComponent);
   Config::register_render(new STC\PostRender);
   // user category component and render classes.

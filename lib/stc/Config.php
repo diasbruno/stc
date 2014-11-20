@@ -69,8 +69,6 @@ class Config
     self::$app = new Application(self::$data_folder);
 
     // boot app.
-    self::register_component(new PageComponent);
-    self::register_render(new PageRender);
     self::$is_init = true;
 
     return self::$is_init;
