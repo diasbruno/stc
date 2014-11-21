@@ -10,4 +10,4 @@ php:
 install:
   - composer --prefer-source install
 
-script: php test.php
+script: php tests.php
