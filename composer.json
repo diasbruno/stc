@@ -19,9 +19,6 @@
     "cocur/slugify": "~0.10",
     "diasbruno/stc-utils": "~0.1"
   },
-  "require-dev": {
-    "bafs/testify": "dev-master"
-  },
   "scripts": {
     "new": "php bin/stc"
   }
