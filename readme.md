@@ -7,6 +7,7 @@ The main objective of stc is to make a simple and extensible static page generat
 ## Dev
 
 [![Coverage Status](https://coveralls.io/repos/diasbruno/stc/badge.png)](https://coveralls.io/r/diasbruno/stc)
+[![Build Status](https://travis-ci.org/diasbruno/stc.svg?branch=master)](https://travis-ci.org/diasbruno/stc)
 
 ### Dependencies
 
