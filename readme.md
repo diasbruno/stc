@@ -4,6 +4,10 @@ A static page generator.
 
 The main objective of stc is to make a simple and extensible static page generator.
 
+## Dev
+
+[![Coverage Status](https://coveralls.io/repos/diasbruno/stc/badge.png)](https://coveralls.io/r/diasbruno/stc)
+
 ### Dependencies
 
 You will need [composer](http://getcomponser.org). That's it.
