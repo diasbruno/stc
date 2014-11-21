@@ -21,5 +21,8 @@
   },
   "require-dev": {
     "bafs/testify": "dev-master"
+  },
+  "scripts": {
+    "new": "php bin/stc"
   }
 }
