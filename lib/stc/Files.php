@@ -18,7 +18,7 @@ class Files
   public function __construct()
   {
     $this->data_path = '';
-    $this->files = [];
+    $this->files = array();
   }
 
   /**

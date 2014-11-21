@@ -35,13 +35,13 @@ class Config
    * Store all component's instances.
    * @var object
    */
-  static private $components = [];
+  static private $components = array();
 
   /**
    * Store all render's instances.
    * @var object
    */
-  static private $renders = [];
+  static private $renders = array();
 
   /**
    * Initializes the engine.

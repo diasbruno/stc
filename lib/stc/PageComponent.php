@@ -38,7 +38,7 @@ class PageComponent
    */
   public function build($files)
   {
-    $pages = [];
+    $pages = array();
     $files = $files->filter_by(array(&$this, 'filter_by_type'));
 
     foreach($files as $file) {

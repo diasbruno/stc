@@ -16,7 +16,7 @@ class Templates
    */
   public function __construct()
   {
-    $this->templates = [];
+    $this->templates = array();
   }
 
   /**

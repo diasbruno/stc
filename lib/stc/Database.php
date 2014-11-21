@@ -19,7 +19,7 @@ class Database
    */
   public function __construct()
   {
-    $this->db = [];
+    $this->db = array();
   }
 
   /**
@@ -30,7 +30,7 @@ class Database
    */
   private function create($key, $lock = true)
   {
-    $this->db[$key] = ['locked' => $lock, 'content' => null];
+    $this->db[$key] = array('locked' => $lock, 'content' => null);
   }
 
   /**
@@ -39,7 +39,7 @@ class Database
    * @param $value array | The data.
    * @return void
    */
-  private function store_data($key, $value = [])
+  private function store_data($key, $value = array())
   {
     $this->db[$key]['content'] = $value;
   }
@@ -78,7 +78,7 @@ class Database
    * @param $key string | The key name.
    * @param $value any | The value.
    */
-  public function store($key = '', $value = [], $lock = true)
+  public function store($key = '', $value = array(), $lock = true)
   {
     if ($key == '') {
       $this->fault('[Error] Cannot store data without a key. Key is "' . $key . '".');
@@ -107,7 +107,7 @@ class Database
       return $this->db[$key]['content'];
     }
 
-    return [];
+    return array();
   }
 
   /**

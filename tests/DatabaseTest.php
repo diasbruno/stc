@@ -19,7 +19,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
   public function testTryingToStoreDataWithoutAKey()
   {
     try {
-      Config::db()->store('', []);
+      Config::db()->store('', array());
     } catch(\Exception $e) {
       $this->assertTrue(true);
     }
@@ -27,16 +27,16 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
   public function testStoreAndRetrieveData_ItWillBeLockedByDefault()
   {
-    $data = [ 'dummy' => 'dummy' ];
+    $data = array( 'dummy' => 'dummy' );
     Config::db()->store('some-data', $data);
     $this->assertTrue(Config::db()->retrieve('some-data') == $data);
   }
 
   public function testTryingToStoreDataWithExistingKeyThatIsLocked()
   {
-    $data = [ 'dummy' => 'dummy' ];
+    $data = array( 'dummy' => 'dummy' );
     try {
-      Config::db()->store('some-data', []);
+      Config::db()->store('some-data', array());
     } catch(\Exception $e) {
       $this->assertTrue(Config::db()->retrieve('some-data') == $data);
     }
@@ -44,8 +44,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
   public function testStoreUnlockedData()
   {
-    $data = [ 'dummy' => 'dummy' ];
-    Config::db()->store('some-data-2', [], false);
+    $data = array( 'dummy' => 'dummy' );
+    Config::db()->store('some-data-2', array(), false);
     Config::db()->store('some-data-2', $data);
     $this->assertTrue(Config::db()->retrieve('some-data-2') == $data);
   }
