@@ -42,7 +42,6 @@ class PageComponent
     $files = $files->filter_by(array(&$this, 'filter_by_type'));
 
     foreach($files as $file) {
-      if ($file['type'] != $this->type) continue;
       $pages[] = $file;
     }
 
