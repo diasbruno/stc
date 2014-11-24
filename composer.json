@@ -17,7 +17,8 @@
   "require": {
     "php": ">=5.3.2",
     "cocur/slugify": "~0.10",
-    "diasbruno/stc-utils": "~0.1"
+    "diasbruno/stc-utils": "~0.1",
+    "diasbruno/stc-pages": "~0.1"
   },
   "scripts": {
     "new": "php bin/stc"
