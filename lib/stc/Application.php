@@ -110,7 +110,7 @@ class Application
       $db->execute(self::files());
     }
 
-    foreach (self::$writer as $writer) {
+    foreach (self::$writers as $writer) {
       $writer->execute(self::files());
     }
   }
