@@ -38,10 +38,10 @@ class Application
   static private $components = array();
 
   /**
-   * Store all render's instances.
+   * Store all writers instances.
    * @var object
    */
-  static private $renders = array();
+  static private $writers = array();
 
   /**
    * Initializes the engine.
@@ -75,15 +75,15 @@ class Application
   }
 
   /**
-   * Register a new render.
-   * @param $instance object | A render instance.
+   * Register a new writers.
+   * @param $instance object | A writer instance.
    */
-  static public function register_render($instance)
+  static public function register_writer($instance)
   {
     if ($instance == null) {
       throw new \Exception('Instance is null.');
     }
-    self::$renders[] = $instance;
+    self::$writers[] = $instance;
   }
 
   /**
@@ -101,7 +101,7 @@ class Application
   /**
    * Run...
    * Execute the build method in each component, to generate data.
-   * Execute the render method in each render to write pages.
+   * Execute the writers method in each writer to write pages.
    * @return void
    */
   static public function run()
@@ -110,8 +110,8 @@ class Application
       $component->build(self::files());
     }
 
-    foreach (self::$renders as $render) {
-      $render->render(self::files());
+    foreach (self::$writer as $writer) {
+      $writer->render(self::files());
     }
   }
 
