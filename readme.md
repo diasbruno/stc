@@ -19,9 +19,6 @@ Create your composer file and added the STC core engine.
 ```
 {
   ...
-  "autoload": {
-    "classmap": [...] // load your components...
-  },
   "require": {
     "diasbruno/stc": "dev-master"
   }
@@ -43,22 +40,22 @@ use STC\Config;
 
 // sets the directory where the data is stored.
 // 'data' is a directory in the root of the project.
-if (Config::bootstrap($current_dir, 'data')) {
-  /* register components and renders.
+if (Application::bootstrap($current_dir, 'data')) {
+  /* register databases and writers.
    * they work this way, because, maybe, you want to extend
    * some of the plugins to your needs.
-   * NOTE: STC\PageComponent and new STC\PageRender must be loaded, or their extended classes.
-   * NOTE: STC\PostComponent and new STC\PostRender are plugins (stc-posts)...
+   * NOTE: STC\PageDatabase and new STC\PageWriter must be loaded, or their extended classes.
+   * NOTE: STC\PostDatabase and new STC\PostWriter are plugins (stc-posts)...
    */
-  Config::register_component(new STC\PageComponent);
-  Config::register_render(new STC\PageRender);
-  Config::register_component(new STC\PostComponent);
-  Config::register_render(new STC\PostRender);
-  // user category component and render classes.
-  Config::register_component(new CategoryComponent);
-  Config::register_render(new CategoryRender);
+  Application::register_database(new STC\PageDatabase);
+  Application::register_writer(new STC\PageWriter);
+  Application::register_database(new STC\PostDatabase);
+  Application::register_writer(new STC\PostWriter);
+  // user category database and writer classes.
+  Application::register_database(new CategoryDatabase);
+  Application::register_writer(new CategoryWriter);
   // then, execute the generator.
-  Config::run();
+  Application::run();
 }
 ```
 
