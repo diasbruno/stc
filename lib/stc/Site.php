@@ -8,7 +8,15 @@ namespace STC;
  */
 class Site
 {
+  /**
+   * Stores the loaded config file.
+   * @var array
+   */
   private $data;
+  /**
+   * Validates the loaded config file.
+   * @var DataValidator
+   */
   private $validator;
 
   /**
