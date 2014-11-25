@@ -9,6 +9,7 @@ namespace STC;
 class Site
 {
   private $data;
+  private $validator;
 
   /**
    * @constructor
@@ -16,6 +17,10 @@ class Site
   public function __construct()
   {
     $this->data = array();
+    $this->validator = new DataValidator();
+    $this->validator->required('name');
+    $this->validator->required('pages_data');
+    $this->validator->required('public_folder');
   }
 
   /**
@@ -27,6 +32,11 @@ class Site
   {
     $loader = new DataLoader();
     $this->data = $loader->load($data_folder, '/config.json');
+    if ($this->validator->validate($this->data)) {
+      printLn('Config.json is ok.');
+    } else {
+      throw new \Exception('Config.json fail.');
+    }
   }
 
   /**
