@@ -25,7 +25,7 @@ class MarkdownRender extends Render
   public function render($template, $options = array())
   {
     $pre_render = view($template, $options);
-    $md = new Parsedown();
+    $md = new \Parsedown();
 
     return $md->text($pre_render);
   }
