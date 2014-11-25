@@ -19,7 +19,7 @@ class DataValidator
    * @param $key string | the key to check.
    * @return void
    */
-  public function set($key)
+  public function required($key)
   {
     $this->list[] = $key;
   }
@@ -38,9 +38,11 @@ class DataValidator
 
     $current = array_shift($keys);
 
-    return (is_array($arr) ? array_key_exists($current, $arr) : false)
+    return (is_array($arr) ?
+          array_key_exists($current, $arr) :
+          false)
         && ((is_array($arr[$current])) ?
-          $this->walker($keys, $arr[$current]) : 
+          $this->walker($keys, $arr[$current]) :
           (count($keys) > 0 ? false : true));
   }
 
