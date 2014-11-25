@@ -25,11 +25,8 @@ class Site
    */
   public function load($data_folder = '')
   {
-    $data_loader = new DataLoader();
-    $this->data = $data_loader->load(
-      $data_folder,
-      '/config.json'
-    );
+    $loader = new DataLoader();
+    $this->data = $loader->load($data_folder, '/config.json');
   }
 
   /**
