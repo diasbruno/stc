@@ -2,7 +2,7 @@
 
 namespace STC\Test;
 
-use STC\Config;
+use STC\Application;
 
 class TemplatesTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,11 +12,11 @@ class TemplatesTest extends \PHPUnit_Framework_TestCase
 
   public function testLoadTemplatesFromTheFolder()
   {
-    $this->assertTrue(Config::templates()->count() > 0);
+    $this->assertTrue(Application::templates()->count() > 0);
   }
 
   public function testGetDefaultTemplate()
   {
-    $this->assertTrue(Config::templates()->template('default') != '');
+    $this->assertTrue(Application::templates()->template('default') != '');
   }
 }

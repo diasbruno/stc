@@ -9,154 +9,83 @@ namespace STC;
 class Config
 {
   /**
-   * Already initialized?
-   * @var bool
+   * Stores the loaded config file.
+   * @var array
    */
-  static private $is_init = false;
+  private $data;
+  /**
+   * Validates the loaded config file.
+   * @var DataValidator
+   */
+  private $validator;
 
   /**
-   * Root path where the data is stored.
-   * @var string
+   * @constructor
    */
-  static private $root_folder = '';
-  /**
-   * Data path where posts and pages are stored.
-   * @var string
-   */
-  static private $data_folder = '';
-
-  /**
-   * Instance of the application.
-   * @var Site
-   */
-  static private $app = null;
-
-  /**
-   * Store all component's instances.
-   * @var object
-   */
-  static private $components = array();
-
-  /**
-   * Store all render's instances.
-   * @var object
-   */
-  static private $renders = array();
-
-  /**
-   * Initializes the engine.
-   * @param $root string | The root where the data is stored.
-   * @param $data_folder string | The data where the posts and pages are stored.
-   * @return bool
-   */
-  static public function bootstrap($root = '', $data_folder = '')
+  public function __construct()
   {
-    if (self::$is_init) { return self::$is_init; }
+    $this->data = array();
+    $this->validator = new DataValidator();
+    $this->validator->required('name');
+    $this->validator->required('pages_data');
+    $this->validator->required('public_folder');
+  }
 
-    if ($root != '') {
-      self::$root_folder = $root;
+  /**
+   * Load files from a given directory.
+   * @param $data_folder string | The folder name.
+   * @return array
+   */
+  public function load($data_folder = '')
+  {
+    $loader = new DataLoader();
+    $this->data = $loader->load($data_folder, '/config.json');
+    if ($this->validator->validate($this->data)) {
+      printLn('Config.json is ok.');
     } else {
-      throw new \Exception('Root folder must be setted.');
-    }
-
-    if ($data_folder != '') {
-      self::$data_folder = self::$root_folder . '/' . $data_folder;
-    } else {
-      throw new \Exception('Data folder must be setted.');
-    }
-
-    // load the config file.
-    self::$app = new Application(self::$data_folder);
-
-    // boot app.
-    self::$is_init = true;
-
-    return self::$is_init;
-  }
-
-  /**
-   * Register a new render.
-   * @param $instance object | A render instance.
-   */
-  static public function register_render($instance)
-  {
-    if ($instance == null) {
-      throw new \Exception('Instance is null.');
-    }
-    self::$renders[] = $instance;
-  }
-
-  /**
-   * Register a new component.
-   * @param $instance object | A component instance.
-   */
-  static public function register_component($instance)
-  {
-    if ($instance == null) {
-      throw new \Exception('Instance is null.');
-    }
-    self::$components[] = $instance;
-  }
-
-  /**
-   * Run...
-   * Execute the build method in each component, to generate data.
-   * Execute the render method in each render to write pages.
-   * @return void
-   */
-  static public function run()
-  {
-    foreach (self::$components as $component) {
-      $component->build(self::files());
-    }
-
-    foreach (self::$renders as $render) {
-      $render->render(self::files());
+      throw new \Exception('Config.json fail.');
     }
   }
 
   /**
-   * Returns the data folder.
+   * Returns the name of the project.
    * @return string
    */
-  static public function data_folder()
+  public function name()
   {
-    return self::$data_folder;
+    return $this->data['name'];
   }
 
   /**
-   * Returns the site instance.
-   * @return Site
+   * Returns the name of the public folder
+   * where all the files will be exported.
+   * @return string
    */
-  static public function site()
+  public function public_folder()
   {
-    return self::$app->site;
+    return $this->data['public_folder'];
   }
 
   /**
-   * Returns the templates instance.
-   * @return Templates
+   * Use this method to ensure that the key must be present.
+   * @param $key string | The key name.
+   * @return object
    */
-  static public function templates()
+  public function get($key)
   {
-    return self::$app->templates;
+    return $this->data[$key];
   }
 
   /**
-   * Returns the files instance.
-   * @return Files
+   * Use this method for optional values.
+   * @param $key string | The key name.
+   * @return object
    */
-  static public function files()
+  public function getOptional($key, $defaultValue = null)
   {
-    return self::$app->files;
-  }
-
-  /**
-   * Returns the database instance.
-   * @return Files
-   */
-  static public function db()
-  {
-    return self::$app->db;
+    if (array_key_exists($key, $this->data)) {
+      return $this->data[$key];
+    }
+    return $defaultValue;
   }
 }

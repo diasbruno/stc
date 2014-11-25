@@ -2,32 +2,30 @@
 
 namespace STC\Test;
 
-use STC\Config;
+use STC\Application;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
-  public function setup()
-  {
-  }
+  public function setup() {}
 
-	public function testDefaultConfigWithoutAValidDataFolder()
+	public function testDefaultApplicationWithoutAValidDataFolder()
 	{
 	  try {
-	    Config::bootstrap();
+	    Application::bootstrap();
 	  } catch(\Exception $e) {
 	    $this->assertTrue(true);
 	  }
 	}
 
-	public function testDefaultConfig()
+	public function testDefaultApplication()
 	{
-	  $this->assertTrue(Config::bootstrap(dirname(__FILE__), 'data'));
+	  $this->assertTrue(Application::bootstrap(dirname(__FILE__), 'data'));
 	}
 
-	public function testloadSiteConfig()
+	public function testloadSiteApplication()
 	{
-	  $this->assertTrue(Config::site()->name() == 'simple web project');
-	  $this->assertTrue(Config::site()->public_folder() == 'web');
-	  $this->assertTrue(Config::site()->get("my_data") == 'stuff');
+	  $this->assertTrue(Application::config()->name() == 'simple web project');
+	  $this->assertTrue(Application::config()->public_folder() == 'web');
+	  $this->assertTrue(Application::config()->get("my_data") == 'stuff');
 	}
 }
