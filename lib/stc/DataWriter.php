@@ -34,7 +34,7 @@ class DataWriter
    */
   public function write($path = '', $file = '', $content = '')
   {
-    $the_path = Application::site()->public_folder() . '/' . $path;
+    $the_path = Application::config()->public_folder() . '/' . $path;
 
     @mkdir($the_path, 0755, true);
     $this->write_to($the_path . '/'. $file, $content);
