@@ -6,14 +6,14 @@ namespace STC;
  * @author Bruno Dias <dias.h.bruno@gmail.com>
  * @license MIT License (see LICENSE)
  */
-class DefaultRender extends Render
+class MarkdownRender extends Render
 {
   /**
    * @constructor
    */
   public function __construct()
   {
-    $this->exts = array('phtml', 'php');
+    $this->exts = array('md', 'markdown');
   }
 
   /**
@@ -24,6 +24,9 @@ class DefaultRender extends Render
    */
   public function render($template, $options = array())
   {
-    return view($template, $options);
+    $pre_render = view($template, $options);
+    $md = new Parsedown();
+
+    return $md->text($pre_render);
   }
 }

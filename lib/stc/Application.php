@@ -73,6 +73,7 @@ class Application
 
     // register the default render.
     self::$app->renders->register(new DefaultRender());
+    self::$app->renders->register(new MarkdownRender());
 
     return self::$is_init;
   }
