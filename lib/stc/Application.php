@@ -32,10 +32,10 @@ class Application
   static private $app = null;
 
   /**
-   * Store all component's instances.
+   * Store all database components instances.
    * @var object
    */
-  static private $components = array();
+  static private $dbs = array();
 
   /**
    * Store all writers instances.
@@ -87,31 +87,31 @@ class Application
   }
 
   /**
-   * Register a new component.
-   * @param $instance object | A component instance.
+   * Register a new database component.
+   * @param $instance object | A database component instance.
    */
-  static public function register_component($instance)
+  static public function register_database($instance)
   {
     if ($instance == null) {
       throw new \Exception('Instance is null.');
     }
-    self::$components[] = $instance;
+    self::$dbs[] = $instance;
   }
 
   /**
    * Run...
-   * Execute the build method in each component, to generate data.
-   * Execute the writers method in each writer to write pages.
+   * Execute the execute method in each database component, to generate data.
+   * Execute the execute method in each writer to write pages.
    * @return void
    */
   static public function run()
   {
-    foreach (self::$components as $component) {
-      $component->build(self::files());
+    foreach (self::$dbs as $db) {
+      $db->execute(self::files());
     }
 
     foreach (self::$writer as $writer) {
-      $writer->render(self::files());
+      $writer->execute(self::files());
     }
   }
 
