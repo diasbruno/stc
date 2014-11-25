@@ -72,7 +72,7 @@ class Application
     self::$is_init = true;
 
     // register the default render.
-    self::$app->renderers->register(new DefaultRender());
+    self::$app->renders->register(new DefaultRender());
 
     return self::$is_init;
   }
@@ -110,7 +110,7 @@ class Application
     if ($instance == null) {
       throw new \Exception('Instance is null.');
     }
-    self::$app->renderers->register($instance);
+    self::$app->renders->register($instance);
   }
 
   /**
@@ -155,6 +155,15 @@ class Application
   static public function templates()
   {
     return self::$app->templates;
+  }
+
+  /**
+   * Returns the renders instance.
+   * @return Templates
+   */
+  static public function renders()
+  {
+    return self::$app->renders;
   }
 
   /**

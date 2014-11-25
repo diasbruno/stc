@@ -32,7 +32,7 @@ class DataApplication
    * Store all renders.
    * @var object
    */
-  public $renderers = null;
+  public $renders = null;
 
   /**
    * @constructor
@@ -55,6 +55,6 @@ class DataApplication
     $this->db = new Database();
 
     // 
-    $this->renderers = new Renders();
+    $this->renders = new Renders();
   }
 }
