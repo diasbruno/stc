@@ -71,6 +71,9 @@ class Application
     // boot app.
     self::$is_init = true;
 
+    // register the default render.
+    self::$app->renderers->register(new DefaultRender());
+
     return self::$is_init;
   }
 
@@ -96,6 +99,18 @@ class Application
       throw new \Exception('Instance is null.');
     }
     self::$dbs[] = $instance;
+  }
+
+  /**
+   * Register a new render component.
+   * @param $instance object | A render component instance.
+   */
+  static public function register_render($instance)
+  {
+    if ($instance == null) {
+      throw new \Exception('Instance is null.');
+    }
+    self::$app->renderers->register($instance);
   }
 
   /**

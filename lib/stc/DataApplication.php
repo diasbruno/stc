@@ -28,6 +28,11 @@ class DataApplication
    * @var object
    */
   public $db = null;
+  /**
+   * Store all renders.
+   * @var object
+   */
+  public $renderers = null;
 
   /**
    * @constructor
@@ -48,5 +53,8 @@ class DataApplication
 
     // initialize database.
     $this->db = new Database();
+
+    // 
+    $this->renderers = new Renders();
   }
 }
