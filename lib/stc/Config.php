@@ -40,9 +40,7 @@ class Config
   {
     $loader = new DataLoader();
     $this->data = $loader->load($data_folder, '/config.json');
-    if ($this->validator->validate($this->data)) {
-      printLn('Config.json is ok.');
-    } else {
+    if (!$this->validator->validate($this->data)) {
       throw new \Exception('Config.json fail.');
     }
   }
