@@ -8,10 +8,15 @@ namespace STC;
  */
 class Site
 {
+  private $data;
+
   /**
    * @constructor
    */
-  public function __construct() {}
+  public function __construct()
+  {
+    $this->data = array();
+  }
 
   /**
    * Load files from a given directory.
