@@ -1,18 +1,14 @@
 # stc
 
+[![Build Status](https://travis-ci.org/diasbruno/stc.svg?branch=master)](https://travis-ci.org/diasbruno/stc)
+
 A static page generator.
 
 The main objective of stc is to make a simple and extensible static page generator.
 
-## Dev
-
-[![Build Status](https://travis-ci.org/diasbruno/stc.svg?branch=master)](https://travis-ci.org/diasbruno/stc)
-
-### Dependencies
+### Getting started
 
 You will need [composer](http://getcomponser.org). That's it.
-
-### Getting started
 
 Create your composer file and added the STC core engine.
 
