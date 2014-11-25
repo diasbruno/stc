@@ -13,7 +13,7 @@ class Renders
   /**
    * @constructor
    */
-	public function __construct()
+  public function __construct()
   {
     $this->renders = array();
   }
